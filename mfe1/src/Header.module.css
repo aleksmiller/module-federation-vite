@@ -1,0 +1,25 @@
+.header {
+  background: var(--gradient-brand);
+  color: #fff;
+  padding: var(--space-3);
+  text-align: center;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgb(0 0 0 / 30%);
+}
+
+.emoji {
+  margin-right: var(--space-1);
+}
+
+@media (min-width: 48rem) {
+  .title {
+    font-size: 1.5rem;
+  }
+}

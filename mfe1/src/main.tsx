@@ -1,8 +1,10 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import 'shared/styles.css'
-import App from './App'
+import Header from './Header'
 
+// Standalone mode: this only runs when mfe1 is opened directly on :5174. When
+// the host consumes it, only ./Header is loaded — this file never executes.
 const container = document.getElementById('root')
 if (!container) {
   throw new Error('Expected a #root element in index.html')
@@ -10,6 +12,6 @@ if (!container) {
 
 createRoot(container).render(
   <StrictMode>
-    <App />
+    <Header />
   </StrictMode>,
 )

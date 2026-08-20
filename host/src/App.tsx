@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
 import { createLogger, LoadingSpinner } from 'shared'
-import './App.css'
+import styles from './App.module.css'
 
 const log = createLogger('host')
 
@@ -19,24 +19,29 @@ function App() {
   }, [])
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Host Application 🌐</h1>
-        <p>This application is consuming a component from the remote microfrontend.</p>
-        <hr style={{ width: '50%' }} />
-
-        {remoteError ? (
-          <div role="alert" style={{ color: 'red', padding: '20px' }}>
-            <h3>Remote Loading Error:</h3>
-            <p>{remoteError}</p>
-            <p>Make sure the microfrontend is running on port 5174</p>
-          </div>
-        ) : (
-          <Suspense fallback={<LoadingSpinner text="Loading header…" />}>
-            <RemoteHeader />
-          </Suspense>
-        )}
+    <div className={styles.app}>
+      <header className={styles.header}>
+        <h1>Host Application Shell</h1>
+        <p className={styles.description}>
+          The section below is a separate React application, loaded over Module Federation.
+        </p>
       </header>
+
+      <main>
+        <section className={styles.slot}>
+          {remoteError ? (
+            <div role="alert" className={styles.error}>
+              <h2>Could not load the microfrontend</h2>
+              <p>{remoteError}</p>
+              <p>Check that mfe1 is running on port 5174.</p>
+            </div>
+          ) : (
+            <Suspense fallback={<LoadingSpinner text="Loading header…" />}>
+              <RemoteHeader />
+            </Suspense>
+          )}
+        </section>
+      </main>
     </div>
   )
 }
