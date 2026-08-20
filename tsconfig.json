@@ -1,0 +1,31 @@
+{
+  // Base configuration. Every workspace extends this and adds its own `include`.
+  // Type checking runs per workspace via `npm run type-check` at the root.
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "jsx": "react-jsx",
+
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+
+    // Vite transpiles each file in isolation with esbuild, so TS must never
+    // emit and must reject anything that cannot be understood one file at a
+    // time. `vite/client` supplies the ambient types for the non-JS assets
+    // Vite knows how to load — CSS Modules, `?url` imports, SVG and friends.
+    "noEmit": true,
+    "isolatedModules": true,
+    "types": ["vite/client"],
+
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  }
+}

@@ -11,7 +11,7 @@ export default defineConfig({
       name: 'mfe1',
       filename: 'remoteEntry.js',
       exposes: {
-        './Header': './src/Header.jsx',
+        './Header': './src/Header.tsx',
       },
       // A remote has to declare the same shared dependencies as the host, or it
       // loads its own React instead of consuming the one already on the page.
