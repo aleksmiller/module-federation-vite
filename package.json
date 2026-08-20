@@ -1,0 +1,20 @@
+{
+  "name": "module-federation-vite",
+  "version": "1.0.0",
+  "description": "Module Federation example with Vite",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "./start-dev.sh",
+    "dev:remote": "cd remote && npm run dev",
+    "dev:host": "cd host && npm run dev",
+    "build": "npm run build:remote && npm run build:host",
+    "build:remote": "cd remote && npm run build",
+    "build:host": "cd host && npm run build",
+    "install:all": "npm install && cd remote && npm install && cd ../host && npm install"
+  },
+  "keywords": ["module-federation", "vite", "react", "microfrontend"],
+  "author": "",
+  "license": "MIT"
+}
