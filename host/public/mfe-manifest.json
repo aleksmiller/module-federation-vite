@@ -1,0 +1,11 @@
+{
+  "remotes": [
+    {
+      "id": "header",
+      "name": "Header (MFE1)",
+      "scope": "mfe1",
+      "module": "./Header",
+      "entry": "http://localhost:5174/remoteEntry.js"
+    }
+  ]
+}

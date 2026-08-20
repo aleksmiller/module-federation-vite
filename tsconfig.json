@@ -16,7 +16,7 @@
     // Vite knows how to load — CSS Modules, `?url` imports, SVG and friends.
     "noEmit": true,
     "isolatedModules": true,
-    "types": ["vite/client"],
+    "types": ["vite/client", "node"],
 
     "strict": true,
     "noUnusedLocals": true,

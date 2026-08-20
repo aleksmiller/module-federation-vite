@@ -1,47 +1,45 @@
-import { lazy, Suspense, useEffect, useState } from 'react'
-import { createLogger, LoadingSpinner } from 'shared'
+import { LoadingSpinner } from 'shared'
+import { RemoteComponent } from './components/RemoteComponent'
+import { useManifest } from './remotes/useManifest'
+import { MANIFEST_URL } from './remotes/manifest'
 import styles from './App.module.css'
 
-const log = createLogger('host')
-
-const RemoteHeader = lazy(() => import('mfe1/Header'))
-
 function App() {
-  const [remoteError, setRemoteError] = useState<string | null>(null)
-
-  useEffect(() => {
-    // Surface an unreachable microfrontend as a message rather than letting
-    // the lazy import reject into an unhandled rejection.
-    import('mfe1/Header').catch((error: unknown) => {
-      log.error('Could not load mfe1/Header', error)
-      setRemoteError(error instanceof Error ? error.message : String(error))
-    })
-  }, [])
+  const manifest = useManifest()
 
   return (
     <div className={styles.app}>
       <header className={styles.header}>
         <h1>Host Application Shell</h1>
         <p className={styles.description}>
-          The section below is a separate React application, loaded over Module Federation.
+          The sections below are separate React applications, discovered at runtime from{' '}
+          <code>{MANIFEST_URL}</code> and loaded over Module Federation.
         </p>
       </header>
 
       <main>
-        <section className={styles.slot}>
-          {remoteError ? (
-            <div role="alert" className={styles.error}>
-              <h2>Could not load the microfrontend</h2>
-              <p>{remoteError}</p>
-              <p>Check that mfe1 is running on port 5174.</p>
-            </div>
+        {manifest.status === 'loading' && <LoadingSpinner text="Discovering microfrontends…" />}
+
+        {manifest.status === 'error' && (
+          <div role="alert" className={styles.error}>
+            <h2>Could not load the microfrontend manifest</h2>
+            <p>{manifest.error.message}</p>
+          </div>
+        )}
+
+        {manifest.status === 'ready' &&
+          (manifest.remotes.length === 0 ? (
+            <p>No microfrontends are configured.</p>
           ) : (
-            <Suspense fallback={<LoadingSpinner text="Loading header…" />}>
-              <RemoteHeader />
-            </Suspense>
-          )}
-        </section>
+            manifest.remotes.map((remote) => (
+              <section key={remote.id} className={styles.slot}>
+                <RemoteComponent remote={remote} />
+              </section>
+            ))
+          ))}
       </main>
+
+      <footer className={styles.footer}>This footer is rendered by the host.</footer>
     </div>
   )
 }
