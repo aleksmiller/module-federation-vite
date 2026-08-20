@@ -12,6 +12,7 @@ This project demonstrates Module Federation using Vite 7 as the build tool.
 ### Quick Start (Recommended)
 
 1. Install all dependencies:
+
    ```bash
    npm run install:all
    ```
@@ -26,11 +27,13 @@ This will start both the remote and host applications simultaneously.
 ### Manual Start
 
 1. Install dependencies for both applications:
+
    ```bash
    npm run install:all
    ```
 
 2. Start the remote application (in one terminal):
+
    ```bash
    npm run dev:mfe1
    ```

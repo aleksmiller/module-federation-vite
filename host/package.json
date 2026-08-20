@@ -10,8 +10,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist",
-    "type-check": "tsc --noEmit",
-    "lint": "eslint ."
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@module-federation/runtime": "^0.17.1",
