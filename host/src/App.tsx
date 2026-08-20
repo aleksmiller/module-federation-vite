@@ -1,5 +1,8 @@
 import { lazy, Suspense, useEffect, useState } from 'react'
+import { createLogger, LoadingSpinner } from 'shared'
 import './App.css'
+
+const log = createLogger('host')
 
 const RemoteHeader = lazy(() => import('mfe1/Header'))
 
@@ -10,6 +13,7 @@ function App() {
     // Surface an unreachable microfrontend as a message rather than letting
     // the lazy import reject into an unhandled rejection.
     import('mfe1/Header').catch((error: unknown) => {
+      log.error('Could not load mfe1/Header', error)
       setRemoteError(error instanceof Error ? error.message : String(error))
     })
   }, [])
@@ -28,7 +32,7 @@ function App() {
             <p>Make sure the microfrontend is running on port 5174</p>
           </div>
         ) : (
-          <Suspense fallback={<div>Loading header…</div>}>
+          <Suspense fallback={<LoadingSpinner text="Loading header…" />}>
             <RemoteHeader />
           </Suspense>
         )}
