@@ -1,0 +1,27 @@
+.content {
+  padding: var(--space-3);
+  background-color: var(--color-surface-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.title {
+  margin-top: 0;
+  font-size: 1.125rem;
+}
+
+.text {
+  margin: var(--space-1) 0;
+  color: var(--color-text-muted);
+}
+
+.count {
+  color: var(--color-accent);
+}
+
+@media (min-width: 48rem) {
+  .title {
+    font-size: 1.25rem;
+  }
+}

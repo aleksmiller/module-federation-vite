@@ -6,6 +6,13 @@
       "scope": "mfe1",
       "module": "./Header",
       "entry": "http://localhost:5174/remoteEntry.js"
+    },
+    {
+      "id": "content",
+      "name": "Content (MFE2)",
+      "scope": "mfe2",
+      "module": "./Content",
+      "entry": "http://localhost:5175/remoteEntry.js"
     }
   ]
 }

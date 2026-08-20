@@ -16,16 +16,19 @@
   "workspaces": [
     "shared",
     "host",
-    "mfe1"
+    "mfe1",
+    "mfe2"
   ],
   "scripts": {
-    "dev": "concurrently -n mfe1,host -c magenta,green \"npm:dev:mfe1\" \"npm:dev:host\"",
+    "dev": "concurrently -n mfe1,mfe2,host -c blue,magenta,green \"npm:dev:mfe1\" \"npm:dev:mfe2\" \"npm:dev:host\"",
     "dev:host": "npm run dev --workspace=host",
     "dev:mfe1": "npm run dev --workspace=mfe1",
-    "build": "npm run build --workspace=mfe1 && npm run build --workspace=host",
-    "preview": "concurrently -n mfe1,host -c magenta,green \"npm:preview:mfe1\" \"npm:preview:host\"",
+    "dev:mfe2": "npm run dev --workspace=mfe2",
+    "build": "npm run build --workspace=mfe1 && npm run build --workspace=mfe2 && npm run build --workspace=host",
+    "preview": "concurrently -n mfe1,mfe2,host -c blue,magenta,green \"npm:preview:mfe1\" \"npm:preview:mfe2\" \"npm:preview:host\"",
     "preview:host": "npm run preview --workspace=host",
     "preview:mfe1": "npm run preview --workspace=mfe1",
+    "preview:mfe2": "npm run preview --workspace=mfe2",
     "clean": "npm run clean --workspaces --if-present",
     "type-check": "npm run type-check --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present"
