@@ -1,10 +1,10 @@
 import React, { Suspense, useEffect, useState } from 'react';
 import './App.css';
 
-const RemoteButton = React.lazy(() => {
-  console.log('Attempting to load remote button...');
-  return import('remote').catch(error => {
-    console.error('Failed to load remote button:', error);
+const RemoteHeader = React.lazy(() => {
+  console.log('Attempting to load remote header...');
+  return import('mfe1/Header').catch(error => {
+    console.error('Failed to load remote header:', error);
     throw error;
   });
 });
@@ -17,7 +17,7 @@ function App() {
     const checkRemote = async () => {
       try {
         // Try to access the remote entry
-        const remoteEntry = await import('remote');
+        const remoteEntry = await import('mfe1/Header');
         console.log('Remote entry loaded successfully:', remoteEntry);
       } catch (error) {
         console.error('Remote entry check failed:', error);
@@ -39,11 +39,11 @@ function App() {
           <div style={{ color: 'red', padding: '20px' }}>
             <h3>Remote Loading Error:</h3>
             <p>{remoteError}</p>
-            <p>Make sure the remote application is running on port 5001</p>
+            <p>Make sure the remote application is running on port 5174</p>
           </div>
         ) : (
-          <Suspense fallback={<div>Loading button...</div>}>
-            <RemoteButton />
+          <Suspense fallback={<div>Loading header…</div>}>
+            <RemoteHeader />
           </Suspense>
         )}
       </header>

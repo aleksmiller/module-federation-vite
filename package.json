@@ -15,16 +15,16 @@
   },
   "workspaces": [
     "host",
-    "remote"
+    "mfe1"
   ],
   "scripts": {
-    "dev": "concurrently -n remote,host -c magenta,green \"npm:dev:remote\" \"npm:dev:host\"",
+    "dev": "concurrently -n mfe1,host -c magenta,green \"npm:dev:mfe1\" \"npm:dev:host\"",
     "dev:host": "npm run dev --workspace=host",
-    "dev:remote": "npm run dev --workspace=remote",
-    "build": "npm run build --workspace=remote && npm run build --workspace=host",
-    "preview": "concurrently -n remote,host -c magenta,green \"npm:preview:remote\" \"npm:preview:host\"",
+    "dev:mfe1": "npm run dev --workspace=mfe1",
+    "build": "npm run build --workspace=mfe1 && npm run build --workspace=host",
+    "preview": "concurrently -n mfe1,host -c magenta,green \"npm:preview:mfe1\" \"npm:preview:host\"",
     "preview:host": "npm run preview --workspace=host",
-    "preview:remote": "npm run preview --workspace=remote",
+    "preview:mfe1": "npm run preview --workspace=mfe1",
     "clean": "npm run clean --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present"
   },
